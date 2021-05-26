@@ -45,6 +45,7 @@ namespace DBConnect
 
         private void buttongetcars_Click(object sender, EventArgs e)
         {
+            string carmessage = string.Empty;
             DBCars dbcars = new DBCars();
             MySqlDataReader reader = dbcars.GetCars(this.db.Connection);
             while (reader.Read())
@@ -56,9 +57,9 @@ namespace DBConnect
                 double rentalperday = reader.GetDouble(4);
                 int available = reader.GetInt32(5);
 
-                string message = string.Format($"Vehicle Registration={vehicleregno},Make={make},EngineSize={enginesize},Date Registered={dateregistered},Rental={rentalperday},Available={available}");
+                 carmessage += string.Format($"Vehicle Registration={vehicleregno},Make={make},EngineSize={enginesize},Date Registered={dateregistered},Rental={rentalperday},Available={available}");
 
-                MessageBox.Show(message);
+                MessageBox.Show(carmessage);
             }
             reader.Close();
         }
